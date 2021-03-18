@@ -20,9 +20,9 @@ public interface OrderDao {
     @Update
     void update(OrderEntity... orders);
 
-    @Query("SELECT * FROM product")
+    @Query("SELECT * FROM order_table")
     List<OrderEntity> getAll();
 
-    @Query("SELECT * FROM product WHERE id = :id")
-    OrderEntity get(String id);
+    @Query("SELECT * FROM order_table WHERE name = :name")
+    OrderEntity get(String name);
 }

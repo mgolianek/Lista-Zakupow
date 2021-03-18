@@ -21,9 +21,9 @@ public interface ProductDao {
     @Update
     void update(ProductEntity... products);
 
-    @Query("SELECT * FROM product")
+    @Query("SELECT * FROM product_table")
     List<ProductEntity> getAll();
 
-    @Query("SELECT * FROM product WHERE id = :id")
-    ProductEntity get(String id);
+    @Query("SELECT * FROM product_table WHERE name = :name")
+    ProductEntity get(String name);
 }
