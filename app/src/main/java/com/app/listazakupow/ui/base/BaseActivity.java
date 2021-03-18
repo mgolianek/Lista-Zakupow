@@ -1,4 +1,4 @@
-package com.app.listazakupow.ui;
+package com.app.listazakupow.ui.base;
 
 import android.content.Intent;
 
@@ -23,6 +23,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
     public void startActivity(Class<?> calledActivity) {
         Intent i = new Intent(this, calledActivity);

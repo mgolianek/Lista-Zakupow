@@ -1,13 +1,12 @@
 package com.app.listazakupow.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import com.app.listazakupow.R;
 import com.app.listazakupow.databinding.ActivityMainBinding;
+import com.app.listazakupow.ui.base.BaseActivity;
 import com.app.listazakupow.util.OnSingleClickListener;
 import com.app.listazakupow.viewModel.MainActivityViewModel;
 

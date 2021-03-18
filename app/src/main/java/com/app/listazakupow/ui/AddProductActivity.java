@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.app.listazakupow.databinding.ActivityAddProductBinding;
+import com.app.listazakupow.ui.base.BaseActivity;
 import com.app.listazakupow.viewModel.AddProductViewModel;
 
 public class AddProductActivity extends BaseActivity {

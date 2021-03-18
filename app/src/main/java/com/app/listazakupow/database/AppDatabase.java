@@ -4,6 +4,9 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.app.listazakupow.models.dao.CategoryDao;
+import com.app.listazakupow.models.dao.OrderDao;
+import com.app.listazakupow.models.dao.ProductDao;
 import com.app.listazakupow.models.entities.CategoryEntity;
 import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
@@ -17,6 +20,12 @@ import com.app.listazakupow.util.App;
         exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
+
+    public abstract CategoryDao categoryDao();
+
+    public abstract ProductDao productDao();
+
+    public abstract OrderDao orderDao();
 
     public static AppDatabase getInstance() {
         if (instance != null) {

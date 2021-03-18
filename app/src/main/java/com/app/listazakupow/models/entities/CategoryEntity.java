@@ -9,4 +9,8 @@ public class CategoryEntity {
     @PrimaryKey
     @NonNull
     public String name;
+
+    public CategoryEntity(@NonNull String name) {
+        this.name = name;
+    }
 }
