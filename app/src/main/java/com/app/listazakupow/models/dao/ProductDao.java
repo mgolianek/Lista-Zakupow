@@ -16,7 +16,7 @@ import java.util.List;
 @Dao
 public interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(CategoryEntity categoryEntity);
+    long insert(CategoryEntity categoryEntity);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(ProductEntity... products);

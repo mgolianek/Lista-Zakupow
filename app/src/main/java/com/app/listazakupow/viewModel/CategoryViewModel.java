@@ -11,11 +11,11 @@ import com.app.listazakupow.repositories.AppRepository;
 
 import java.util.List;
 
-public class AddCategoryViewModel extends ViewModel {
+public class CategoryViewModel extends ViewModel {
     private final AppRepository repository = new AppRepository();
     private final MutableLiveData<String> categoryLiveData;
 
-    public AddCategoryViewModel() {
+    public CategoryViewModel() {
         categoryLiveData = new MutableLiveData<>();
     }
 

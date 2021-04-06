@@ -36,14 +36,14 @@ public class MainActivity extends BaseActivity {
         binding.addCategoryBtn.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                startActivity(AddCategoryActivity.class);
+                startActivity(CategoryActivity.class);
             }
         });
 
         binding.addProductBtn.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View v) {
-                startActivity(AddProductActivity.class);
+                startActivity(ProductActivity.class);
             }
         });
     }

@@ -9,8 +9,10 @@ public class CategoryEntity {
     @PrimaryKey
     @NonNull
     public String name;
+    public int resourceImageId;
 
-    public CategoryEntity(@NonNull String name) {
+    public CategoryEntity(@NonNull String name, int resourceImageId) {
         this.name = name;
+        this.resourceImageId = resourceImageId;
     }
 }

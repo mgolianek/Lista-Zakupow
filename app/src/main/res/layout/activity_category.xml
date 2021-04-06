@@ -4,14 +4,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.app.listazakupow.viewModel.AddCategoryViewModel" />
+            type="com.app.listazakupow.viewModel.CategoryViewModel" />
     </data>
 
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AddCategoryActivity">
+        tools:context=".ui.CategoryActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -73,8 +73,8 @@
                 android:id="@+id/category_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:spanCount="1"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
                 tools:itemCount="30"
                 tools:listitem="@layout/category_item_list_view"/>
 

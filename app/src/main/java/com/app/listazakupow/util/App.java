@@ -2,6 +2,8 @@ package com.app.listazakupow.util;
 
 import android.app.Application;
 
+import com.app.listazakupow.database.AppDatabase;
+
 public class App extends Application {
     private static App mContext;
 
