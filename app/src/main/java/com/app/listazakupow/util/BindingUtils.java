@@ -10,11 +10,6 @@ public final class BindingUtils {
     private BindingUtils() {
     }
 
-    @BindingAdapter({"errorMsg"})
-    public static void setErrorMessage(TextInputLayout view, String errorMessage) {
-        view.setError(errorMessage);
-    }
-
     @BindingAdapter({"src"})
     public static void setImageViewResource(ImageView imageView, int resource) {
         imageView.setImageResource(resource);

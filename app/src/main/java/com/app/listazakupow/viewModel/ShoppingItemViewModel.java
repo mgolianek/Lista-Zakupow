@@ -8,19 +8,19 @@ import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
 
 public class ShoppingItemViewModel extends ViewModel {
-    private  String name;
-    private  int resourceImageId;
+    private String name;
+    private String quantityString;
 
     public ShoppingItemViewModel(OrderEntity entity) {
-        name="test";
-        resourceImageId = R.drawable.ic_coffe;
+        name = "temp name";
+        quantityString = "" + entity.quantity + " " + entity.quantityType.toString();
     }
 
     public String getName() {
         return name;
     }
 
-    public int getResourceImageId() {
-        return resourceImageId;
+    public String getQuantityString() {
+        return quantityString;
     }
 }

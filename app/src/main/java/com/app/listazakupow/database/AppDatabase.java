@@ -63,10 +63,12 @@ public abstract class AppDatabase extends RoomDatabase {
     private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
         private final CategoryDao categoryDao;
         private final ProductDao productDao;
+        private final OrderDao orderDao;
 
         private  PopulateDBAsyncTask(AppDatabase db) {
             categoryDao = db.categoryDao();
             productDao = db.productDao();
+            orderDao = db.orderDao();
         }
 
         @Override
@@ -96,6 +98,10 @@ public abstract class AppDatabase extends RoomDatabase {
             productDao.insert(new ProductEntity("Produkt1", "Przetwory"));
             productDao.insert(new ProductEntity("Produkt2", "Przetwory"));
             productDao.insert(new ProductEntity("Produkt3", "Przetwory"));
+
+
+//            orderDao.insert(new OrderEntity());
+
             return null;
         }
     }

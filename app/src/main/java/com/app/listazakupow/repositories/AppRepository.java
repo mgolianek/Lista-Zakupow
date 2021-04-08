@@ -7,6 +7,7 @@ import com.app.listazakupow.models.dao.CategoryDao;
 import com.app.listazakupow.models.dao.OrderDao;
 import com.app.listazakupow.models.dao.ProductDao;
 import com.app.listazakupow.models.entities.CategoryEntity;
+import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
 
 import java.util.List;
@@ -23,15 +24,23 @@ public class AppRepository {
         productDao = db.productDao();
     }
 
-    public void insert(ProductEntity productEntity) {
-        productDao.insert(productEntity);
-    }
-
     public LiveData<List<CategoryEntity>> categoryList() {
         return categoryDao.getAll();
     }
 
     public LiveData<List<ProductEntity>> productsForCategory(String categoryName) {
         return productDao.getProductsForCategory(categoryName);
+    }
+
+    public LiveData<List<OrderEntity>> orderList() {
+        return orderDao.getOrderLiveData();
+    }
+
+    public void addProduct(ProductEntity productEntity) {
+        productDao.insert(productEntity);
+    }
+
+    public void addProductToOrderList(OrderEntity orderEntity) {
+        orderDao.insert(orderEntity);
     }
 }

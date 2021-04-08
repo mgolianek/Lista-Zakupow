@@ -1,10 +1,8 @@
 package com.app.listazakupow.viewModel;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.app.listazakupow.models.entities.CategoryEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
 import com.app.listazakupow.repositories.AppRepository;
 

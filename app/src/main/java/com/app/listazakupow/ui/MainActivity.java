@@ -1,6 +1,7 @@
 package com.app.listazakupow.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +26,8 @@ public class MainActivity extends BaseActivity implements ShopListAdapter.OnItem
     private ActivityMainBinding binding;
     private ShopListAdapter adapter;
 
+    public static  int ORDER_LIST_ID = 1; //mialo byc wiecej list zakupowych, ale jest tylko jedna :(
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,22 +48,28 @@ public class MainActivity extends BaseActivity implements ShopListAdapter.OnItem
         adapter.setOnItemClickListener(this);
         binding.shoppingRv.setAdapter(adapter);
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //TODO: delete!
-            }
-
-        }).attachToRecyclerView(binding.shoppingRv);
+//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//                //TODO: delete!
+//            }
+//
+//        }).attachToRecyclerView(binding.shoppingRv);
     }
 
     @Override
     protected void registerObservables() { //not used here YET
+        viewModel.getOrderData().observe(this, orderEntities -> {
+            Log.d("TAG", "registerObservables: ");
+            adapter = new ShopListAdapter(orderEntities); //TODO: livedata
+            adapter.setOnItemClickListener(this);
+            binding.shoppingRv.setAdapter(adapter);
+        });
     }
 
     @Override
@@ -75,7 +84,6 @@ public class MainActivity extends BaseActivity implements ShopListAdapter.OnItem
         int id = item.getItemId();
         if (id == R.id.action_add) {
             startActivity(CategoryActivity.class);
-            //finish();
             return true;
         }
 
