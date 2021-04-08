@@ -10,6 +10,7 @@ public class ProductEntity {
     @PrimaryKey
     @NonNull
     public String name;
+
     public String categoryId;
 
     public ProductEntity(@NonNull String name, String categoryId) {

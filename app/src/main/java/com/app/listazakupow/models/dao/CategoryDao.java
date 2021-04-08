@@ -18,15 +18,6 @@ public interface CategoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(CategoryEntity category);
 
-    @Delete
-    void delete(CategoryEntity category);
-
-    @Update
-    void update(CategoryEntity... category);
-
     @Query("SELECT * FROM category_table")
-    LiveData<List<CategoryEntity>> getAll();
-
-    @Query("SELECT * FROM category_table WHERE name = :name")
-    CategoryEntity get(String name);
+    LiveData<List<CategoryEntity>> getAllCategoryLiveData();
 }

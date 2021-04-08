@@ -17,8 +17,6 @@ public class OrderEntity{
     public QuantityType quantityType;
 
 
-
-
     public OrderEntity(String productId, Boolean checked, double quantity, QuantityType quantityType) {
         this.productId = productId;
         this.checked = checked;
@@ -26,11 +24,3 @@ public class OrderEntity{
         this.quantityType = quantityType;
     }
 }
-
-/*
-list_id (ktora lista zakupowa) - na koncu, najpeirw jedna!
-productId
-quantity
-typ kg/ml/g/szt
-checked
- */

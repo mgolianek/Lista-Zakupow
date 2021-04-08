@@ -9,17 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.listazakupow.databinding.CategoryItemListViewBinding;
 import com.app.listazakupow.models.entities.CategoryEntity;
-import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.ui.base.BaseViewHolder;
-import com.app.listazakupow.util.OnSingleClickListener;
 import com.app.listazakupow.viewModel.CategoryItemViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private static final int VIEW_TYPE_EMPTY = 0;
-    private static final int VIEW_TYPE_NORMAL = 1;
     private OnItemClickListener onItemClickListener;
     private List<CategoryEntity> mItems;
 

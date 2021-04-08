@@ -3,7 +3,6 @@ package com.app.listazakupow.viewModel.factory;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.app.listazakupow.viewModel.CategoryDetailsViewModel;
 import com.app.listazakupow.viewModel.ChooseProductDetailsViewModel;
 
 public class ChooseProductDetailsViewModelFactory implements ViewModelProvider.Factory {

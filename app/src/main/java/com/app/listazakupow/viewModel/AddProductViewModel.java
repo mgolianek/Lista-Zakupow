@@ -1,10 +1,11 @@
 package com.app.listazakupow.viewModel;
 
+import androidx.lifecycle.ViewModel;
+
 import com.app.listazakupow.models.entities.ProductEntity;
-import com.app.listazakupow.models.other.BaseViewModel;
 import com.app.listazakupow.repositories.AppRepository;
 
-public class AddProductViewModel extends BaseViewModel {
+public class AddProductViewModel extends ViewModel {
     AppRepository repository = new AppRepository();
     private final String categoryName;
 

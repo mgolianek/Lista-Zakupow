@@ -9,6 +9,7 @@ public class CategoryEntity {
     @PrimaryKey
     @NonNull
     public String name;
+
     public int resourceImageId;
 
     public CategoryEntity(@NonNull String name, int resourceImageId) {

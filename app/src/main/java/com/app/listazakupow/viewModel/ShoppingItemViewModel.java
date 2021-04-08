@@ -6,14 +6,15 @@ import com.app.listazakupow.R;
 import com.app.listazakupow.models.entities.CategoryEntity;
 import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
+import com.app.listazakupow.models.relations.OrderWithProduct;
 
 public class ShoppingItemViewModel extends ViewModel {
-    private String name;
-    private String quantityString;
+    private final String name;
+    private final String quantityString;
 
-    public ShoppingItemViewModel(OrderEntity entity) {
-        name = "temp name";
-        quantityString = "" + entity.quantity + " " + entity.quantityType.toString();
+    public ShoppingItemViewModel(OrderWithProduct entity) {
+        name = entity.getProduct().name;
+        quantityString = "" + entity.getOrder().quantity + " " + entity.getOrder().quantityType.toString();
     }
 
     public String getName() {

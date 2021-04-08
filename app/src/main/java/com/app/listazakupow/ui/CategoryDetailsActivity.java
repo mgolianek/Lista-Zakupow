@@ -2,17 +2,20 @@ package com.app.listazakupow.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.listazakupow.R;
 import com.app.listazakupow.databinding.ActivityCategoryDetailsBinding;
+import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
 import com.app.listazakupow.ui.adapters.ProductListAdapter;
 import com.app.listazakupow.ui.base.BaseActivity;
@@ -48,6 +51,23 @@ public class CategoryDetailsActivity extends BaseActivity implements ProductList
             adapter = new ProductListAdapter(productEntities);
             adapter.setOnItemClickListener(this);
             binding.productRv.setAdapter(adapter);
+
+            new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                @Override
+                public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                    return false;
+                }
+
+                @Override
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                    int position = viewHolder.getAdapterPosition();
+                    ProductEntity productToRemove = adapter.getProductAt(position);
+                    viewModel.removeProduct(productToRemove);
+
+                    Toast.makeText(CategoryDetailsActivity.this,"Usunięto", Toast.LENGTH_SHORT).show();
+                }
+
+            }).attachToRecyclerView(binding.productRv);
         });
     }
 

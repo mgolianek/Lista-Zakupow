@@ -16,7 +16,6 @@ import com.app.listazakupow.models.dao.ProductDao;
 import com.app.listazakupow.models.entities.CategoryEntity;
 import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
-import com.app.listazakupow.models.other.Converters;
 import com.app.listazakupow.util.App;
 
 @Database(entities = {
@@ -93,15 +92,6 @@ public abstract class AppDatabase extends RoomDatabase {
             categoryDao.insert(new CategoryEntity("Alkohole i używki", R.drawable.ic_alcohol));
             categoryDao.insert(new CategoryEntity("Kawa i herbata", R.drawable.ic_coffe));
             categoryDao.insert(new CategoryEntity("Inne", R.drawable.ic_add));
-
-
-            productDao.insert(new ProductEntity("Produkt1", "Przetwory"));
-            productDao.insert(new ProductEntity("Produkt2", "Przetwory"));
-            productDao.insert(new ProductEntity("Produkt3", "Przetwory"));
-
-
-//            orderDao.insert(new OrderEntity());
-
             return null;
         }
     }

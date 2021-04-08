@@ -1,11 +1,11 @@
 package com.app.listazakupow.ui;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,17 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.listazakupow.R;
 import com.app.listazakupow.databinding.ActivityMainBinding;
 import com.app.listazakupow.models.entities.OrderEntity;
+import com.app.listazakupow.models.relations.OrderWithProduct;
 import com.app.listazakupow.ui.adapters.ShopListAdapter;
 import com.app.listazakupow.ui.base.BaseActivity;
-import com.app.listazakupow.util.OnSingleClickListener;
+import com.app.listazakupow.util.Util;
 import com.app.listazakupow.viewModel.MainActivityViewModel;
 
 public class MainActivity extends BaseActivity implements ShopListAdapter.OnItemClickListener {
     private MainActivityViewModel viewModel;
     private ActivityMainBinding binding;
     private ShopListAdapter adapter;
-
-    public static  int ORDER_LIST_ID = 1; //mialo byc wiecej list zakupowych, ale jest tylko jedna :(
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,36 +38,32 @@ public class MainActivity extends BaseActivity implements ShopListAdapter.OnItem
         binding.setLifecycleOwner(this);
 
         setupToolbar();
-        setupRecyclerView();
         registerObservables();
     }
 
-    private void setupRecyclerView() {
-        adapter = new ShopListAdapter(null); //TODO: livedata
-        adapter.setOnItemClickListener(this);
-        binding.shoppingRv.setAdapter(adapter);
-
-//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-//            @Override
-//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                //TODO: delete!
-//            }
-//
-//        }).attachToRecyclerView(binding.shoppingRv);
-    }
-
     @Override
-    protected void registerObservables() { //not used here YET
+    protected void registerObservables() {
         viewModel.getOrderData().observe(this, orderEntities -> {
-            Log.d("TAG", "registerObservables: ");
-            adapter = new ShopListAdapter(orderEntities); //TODO: livedata
+            adapter = new ShopListAdapter(orderEntities);
             adapter.setOnItemClickListener(this);
             binding.shoppingRv.setAdapter(adapter);
+
+            new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                @Override
+                public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                    return false;
+                }
+
+                @Override
+                public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                    int position = viewHolder.getAdapterPosition();
+                    OrderEntity orderToRemove = adapter.getOrderAt(position);
+                    viewModel.removeOrder(orderToRemove);
+
+                    Toast.makeText(MainActivity.this,"Usunięto", Toast.LENGTH_SHORT).show();
+                }
+
+            }).attachToRecyclerView(binding.shoppingRv);
         });
     }
 
@@ -88,15 +83,21 @@ public class MainActivity extends BaseActivity implements ShopListAdapter.OnItem
         }
 
         if (id == R.id.action_remove_all) {
-            viewModel.removeAllProductsFromList();
+            Util.showSimpleDialog(
+                    this,
+                    "Uwaga",
+                    "Czy na pewno chcesz usunąc wszystkie produkty z listy?",
+                    "Usuń",
+                    "Anuluj",
+                    (dialog, which) -> viewModel.removeAllOrdersFromList(),
+                    (dialog, which) -> { /* nic nie robimy przy anulowaniu */ });
             return true;
         }
-
         return false;
     }
 
     @Override
-    public void onItemClick(OrderEntity entity) {
-        Toast.makeText(this,"TESCIK", Toast.LENGTH_SHORT).show();
+    public void onItemClick(OrderWithProduct entity) {
+        //TODO: check collected product
     }
 }

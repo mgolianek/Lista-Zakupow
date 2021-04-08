@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.listazakupow.databinding.ProductItemListViewBinding;
 import com.app.listazakupow.models.entities.CategoryEntity;
+import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
 import com.app.listazakupow.ui.base.BaseViewHolder;
 import com.app.listazakupow.viewModel.ProductItemViewModel;
@@ -46,6 +47,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public int getItemCount() {
         return mItems.size();
+    }
+
+    public ProductEntity getProductAt(int position) {
+        return mItems.get(position);
     }
 
     public class ProductItemViewHolder extends BaseViewHolder implements View.OnClickListener {

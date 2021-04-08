@@ -2,6 +2,7 @@ package com.app.listazakupow.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,11 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.app.listazakupow.databinding.ActivityChooseProductDetailsBinding;
 import com.app.listazakupow.ui.base.BaseActivity;
-import com.app.listazakupow.util.OnSingleClickListener;
 import com.app.listazakupow.viewModel.ChooseProductDetailsViewModel;
 import com.app.listazakupow.viewModel.factory.ChooseProductDetailsViewModelFactory;
 
-public class ChooseProductDetailsActivity extends BaseActivity {
+public class ChooseProductDetailsActivity extends BaseActivity implements View.OnClickListener {
     private ChooseProductDetailsViewModel viewModel;
     private ActivityChooseProductDetailsBinding binding;
 
@@ -31,20 +31,8 @@ public class ChooseProductDetailsActivity extends BaseActivity {
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
-
-        binding.addProductToOrderBtn.setOnClickListener(new OnSingleClickListener() {
-            @Override
-            public void onSingleClick(View v) {
-                String quantity = binding.quantityEt.getText().toString();
-
-                Button selectedButton = findViewById(binding.radioGroup.getCheckedRadioButtonId());
-                int selectedQuantityTypeId = (int) Integer.parseInt((String) selectedButton.getTag());
-
-                viewModel.addProductToOrder(quantity, selectedQuantityTypeId);
-
-                goBackToMainMenu();
-            }
-        });
+        binding.addProductToOrderBtn.setOnClickListener(this);
+        showBackArrow();
     }
 
 
@@ -57,5 +45,17 @@ public class ChooseProductDetailsActivity extends BaseActivity {
         Intent i = new Intent(this, MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
+    }
+
+    @Override
+    public void onClick(View v) {
+        String quantity = binding.quantityEt.getText().toString();
+
+        Button selectedButton = findViewById(binding.radioGroup.getCheckedRadioButtonId());
+        int selectedQuantityTypeId = (int) Integer.parseInt((String) selectedButton.getTag());
+
+        viewModel.addProductToOrder(quantity, selectedQuantityTypeId);
+
+        goBackToMainMenu();
     }
 }

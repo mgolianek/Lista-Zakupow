@@ -1,10 +1,8 @@
 package com.app.listazakupow.ui;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -56,8 +54,3 @@ public class CategoryActivity extends BaseActivity implements CategoryListAdapte
         startActivity(i);
     }
 }
-
-
-//    Intent intent = new Intent(this, MainActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);

@@ -8,7 +8,6 @@ import com.app.listazakupow.ui.adapters.CategoryListAdapter;
 public class CategoryItemViewModel extends ViewModel {
     private final String name;
     private final int resourceImageId;
-    private CategoryEntity entity;
 
     public CategoryItemViewModel(CategoryEntity entity) {
         this.name = entity.name;

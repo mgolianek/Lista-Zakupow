@@ -1,4 +1,4 @@
-package com.app.listazakupow.models.other;
+package com.app.listazakupow.database;
 
 import androidx.room.TypeConverter;
 

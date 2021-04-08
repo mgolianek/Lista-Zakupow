@@ -23,4 +23,8 @@ public class CategoryDetailsViewModel extends ViewModel {
     public String getCategoryName() {
         return categoryName;
     }
+
+    public void removeProduct(ProductEntity productToRemove) {
+        repository.removeProduct(productToRemove);
+    }
 }

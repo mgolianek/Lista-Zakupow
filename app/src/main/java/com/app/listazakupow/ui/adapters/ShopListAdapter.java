@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.listazakupow.databinding.ShoppingItemListEmptyViewBinding;
 import com.app.listazakupow.databinding.ShoppingItemListViewBinding;
 import com.app.listazakupow.models.entities.OrderEntity;
+import com.app.listazakupow.models.entities.ProductEntity;
+import com.app.listazakupow.models.relations.OrderWithProduct;
 import com.app.listazakupow.ui.base.BaseViewHolder;
 import com.app.listazakupow.viewModel.ShoppingItemEmptyViewModel;
 import com.app.listazakupow.viewModel.ShoppingItemViewModel;
@@ -19,10 +21,10 @@ import java.util.List;
 public class ShopListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public static final int VIEW_TYPE_NORMAL = 0;
     public static final int VIEW_TYPE_EMPTY = 1;
-    private List<OrderEntity> mItems;
+    private List<OrderWithProduct> mItems;
     private OnItemClickListener onItemClickListener;
 
-    public ShopListAdapter(List<OrderEntity> items) {
+    public ShopListAdapter(List<OrderWithProduct> items) {
         if (items == null) {
             items = new ArrayList<>();
         }
@@ -31,6 +33,10 @@ public class ShopListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public OrderEntity getOrderAt(int position) {
+        return mItems.get(position).getOrder();
     }
 
     @NonNull
@@ -80,13 +86,13 @@ public class ShopListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            OrderEntity item = mItems.get(position);
+            OrderWithProduct item = mItems.get(position);
             final ShoppingItemViewModel categoryItemViewModel = new ShoppingItemViewModel(item);
             binding.setViewModel(categoryItemViewModel);
         }
 
         @Override
-        public void onItemClick(OrderEntity entity) {
+        public void onItemClick(OrderWithProduct entity) {
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
                 if (onItemClickListener != null) {
@@ -113,6 +119,6 @@ public class ShopListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
 
     public interface OnItemClickListener {
-        void onItemClick(OrderEntity entity);
+        void onItemClick(OrderWithProduct entity);
     }
 }
