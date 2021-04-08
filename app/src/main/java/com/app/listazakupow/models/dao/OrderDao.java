@@ -24,7 +24,7 @@ public interface OrderDao {
 
     @Query("SELECT * FROM order_table")
     List<OrderEntity> getAll();
-
-    @Query("SELECT * FROM order_table WHERE name = :name")
-    OrderEntity get(String name);
+//
+//    @Query("SELECT * FROM order_table WHERE name = :name")
+//    OrderEntity get(String name);
 }

@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:titleTextColor="@color/white"
-                app:title="Dodaj kategorie"/>
+                app:title="Kategorie"/>
         </com.google.android.material.appbar.AppBarLayout>
 
         <LinearLayout
@@ -32,42 +32,6 @@
             android:layout_below="@id/app_bar"
             android:padding="10dp"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/add_category_layout"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nazwa"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/name_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:text="@={viewModel.categoryLiveData}" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/add_category_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="30dp"
-                    android:text="Dodaj"/>
-
-            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/category_rv"

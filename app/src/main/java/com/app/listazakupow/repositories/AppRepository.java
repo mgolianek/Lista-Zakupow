@@ -1,27 +1,37 @@
 package com.app.listazakupow.repositories;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 
-import com.app.listazakupow.R;
 import com.app.listazakupow.database.AppDatabase;
+import com.app.listazakupow.models.dao.CategoryDao;
+import com.app.listazakupow.models.dao.OrderDao;
+import com.app.listazakupow.models.dao.ProductDao;
 import com.app.listazakupow.models.entities.CategoryEntity;
+import com.app.listazakupow.models.entities.ProductEntity;
 
 import java.util.List;
 
 public class AppRepository {
-    private final AppDatabase db = AppDatabase.getInstance();
+    private final CategoryDao categoryDao;
+    private final OrderDao orderDao;
+    private final ProductDao productDao;
 
+    public AppRepository() {
+        AppDatabase db = AppDatabase.getInstance();
+        categoryDao = db.categoryDao();
+        orderDao = db.orderDao();
+        productDao = db.productDao();
+    }
 
-    public void addCategory(String categoryName) {
-        CategoryEntity categoryEntity = new CategoryEntity(categoryName, R.drawable.ic_bread); //TODO: dynamically?
-        long test = db.productDao().insert(categoryEntity);
-
-        Log.d("TAG", "addCategory: ");
+    public void insert(ProductEntity productEntity) {
+        productDao.insert(productEntity);
     }
 
     public LiveData<List<CategoryEntity>> categoryList() {
-        return db.categoryDao().getAll();
+        return categoryDao.getAll();
+    }
+
+    public LiveData<List<ProductEntity>> productsForCategory(String categoryName) {
+        return productDao.getProductsForCategory(categoryName);
     }
 }

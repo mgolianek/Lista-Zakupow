@@ -1,7 +1,5 @@
 package com.app.listazakupow.viewModel;
 
-import android.text.TextUtils;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -17,16 +15,6 @@ public class CategoryViewModel extends ViewModel {
 
     public CategoryViewModel() {
         categoryLiveData = new MutableLiveData<>();
-    }
-
-    public void addCategory() {
-        String categoryName = categoryLiveData.getValue();
-        if (TextUtils.isEmpty(categoryName)) return; //will fix later
-        repository.addCategory(categoryName);
-    }
-
-    public MutableLiveData<String> getCategoryLiveData() {
-        return categoryLiveData;
     }
 
     public LiveData<List<CategoryEntity>> categoryList() {

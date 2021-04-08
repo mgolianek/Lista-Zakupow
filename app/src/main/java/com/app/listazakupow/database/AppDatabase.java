@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.app.listazakupow.R;
@@ -15,6 +16,7 @@ import com.app.listazakupow.models.dao.ProductDao;
 import com.app.listazakupow.models.entities.CategoryEntity;
 import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
+import com.app.listazakupow.models.other.Converters;
 import com.app.listazakupow.util.App;
 
 @Database(entities = {
@@ -23,6 +25,7 @@ import com.app.listazakupow.util.App;
         ProductEntity.class},
         version = 1,
         exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance;
 
@@ -59,9 +62,11 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
         private final CategoryDao categoryDao;
+        private final ProductDao productDao;
 
         private  PopulateDBAsyncTask(AppDatabase db) {
             categoryDao = db.categoryDao();
+            productDao = db.productDao();
         }
 
         @Override
@@ -86,6 +91,11 @@ public abstract class AppDatabase extends RoomDatabase {
             categoryDao.insert(new CategoryEntity("Alkohole i używki", R.drawable.ic_alcohol));
             categoryDao.insert(new CategoryEntity("Kawa i herbata", R.drawable.ic_coffe));
             categoryDao.insert(new CategoryEntity("Inne", R.drawable.ic_add));
+
+
+            productDao.insert(new ProductEntity("Produkt1", "Przetwory"));
+            productDao.insert(new ProductEntity("Produkt2", "Przetwory"));
+            productDao.insert(new ProductEntity("Produkt3", "Przetwory"));
             return null;
         }
     }

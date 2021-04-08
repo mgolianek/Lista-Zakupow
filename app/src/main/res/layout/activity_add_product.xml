@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
-
         <variable
             name="viewModel"
-            type="com.app.listazakupow.viewModel.MainActivityViewModel" />
+            type="com.app.listazakupow.viewModel.AddProductViewModel" />
     </data>
 
-    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        tools:context=".ui.CategoryActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -21,12 +20,11 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/app_toolbar"
-                app:title="Lista zakupów"
-                app:titleTextColor="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:titleTextColor="@color/white"
+                app:title="Dodaj produkt"/>
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,15 +33,11 @@
             android:padding="10dp"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shopping_rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="30"
-                tools:listitem="@layout/shopping_item_list_view"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dodaj produkt do kat"/>
 
         </LinearLayout>
-
     </RelativeLayout>
 </layout>

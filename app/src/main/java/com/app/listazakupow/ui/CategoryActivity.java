@@ -1,19 +1,21 @@
 package com.app.listazakupow.ui;
 
+import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.app.listazakupow.databinding.ActivityCategoryBinding;
+import com.app.listazakupow.models.entities.CategoryEntity;
 import com.app.listazakupow.ui.adapters.CategoryListAdapter;
 import com.app.listazakupow.ui.base.BaseActivity;
-import com.app.listazakupow.util.OnSingleClickListener;
 import com.app.listazakupow.viewModel.CategoryViewModel;
 
-public class CategoryActivity extends BaseActivity {
+public class CategoryActivity extends BaseActivity implements CategoryListAdapter.OnItemClickListener {
     private CategoryViewModel viewModel;
     private ActivityCategoryBinding binding;
     private CategoryListAdapter adapter;
@@ -29,23 +31,14 @@ public class CategoryActivity extends BaseActivity {
         binding.setLifecycleOwner(this);
 
         showBackArrow();
-        setupButtons();
         registerObservables();
-    }
-
-    private void setupButtons() {
-        binding.addCategoryBtn.setOnClickListener(new OnSingleClickListener() {
-            @Override
-            public void onSingleClick(View v) {
-                viewModel.addCategory();
-            }
-        });
     }
 
     @Override
     protected void registerObservables() {
         viewModel.categoryList().observe(this, categoryEntities -> {
             adapter = new CategoryListAdapter(categoryEntities);
+            adapter.setOnItemClickListener(this);
             binding.categoryRv.setAdapter(adapter);
         });
     }
@@ -54,4 +47,17 @@ public class CategoryActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
     }
+
+
+    @Override
+    public void onItemClick(CategoryEntity entity) {
+        Intent i = new Intent(this, CategoryDetailsActivity.class);
+        i.putExtra("categoryName", entity.name); //name is category ID
+        startActivity(i);
+    }
 }
+
+
+//    Intent intent = new Intent(this, MainActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);

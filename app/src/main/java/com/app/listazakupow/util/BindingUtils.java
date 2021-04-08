@@ -15,7 +15,7 @@ public final class BindingUtils {
         view.setError(errorMessage);
     }
 
-    @BindingAdapter({"bind:src"})
+    @BindingAdapter({"src"})
     public static void setImageViewResource(ImageView imageView, int resource) {
         imageView.setImageResource(resource);
     }
