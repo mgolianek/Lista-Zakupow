@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.listazakupow.R;
 import com.app.listazakupow.databinding.ActivityCategoryDetailsBinding;
-import com.app.listazakupow.models.entities.OrderEntity;
 import com.app.listazakupow.models.entities.ProductEntity;
 import com.app.listazakupow.ui.adapters.ProductListAdapter;
 import com.app.listazakupow.ui.base.BaseActivity;

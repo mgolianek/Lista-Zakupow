@@ -21,5 +21,4 @@ public class CategoryItemViewModel extends ViewModel {
     public int getResourceImageId() {
         return resourceImageId;
     }
-
 }
