@@ -1,1 +1,1 @@
-# Lista-Zakupow
+# Simple shopping list app
